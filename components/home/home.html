@@ -10,7 +10,8 @@
     <a class="list-group-item repository" data-bind="attr: { href: link }, css: { 'path-removed': pathRemoved }">
       <span class="arrow-icon octicon-circled pull-left" data-bind="html: arrowIcon"></span>
       <span class="repo-is-dirty pull-left" data-toggle="tooltip" data-placement="top" data-container="body" title=""
-        data-original-title="Repo has changes" data-bind="css: { 'glyphicon-asterisk': repoIsDirty }"></span>
+        data-original-title="Repo has uncommitted changes"
+        data-bind="css: { 'glyphicon-asterisk': repoIsDirty }"></span>
       <h4 class="list-group-item-heading" data-bind="text: title"></h4>
       <p class="list-group-item-text" data-bind="text: remote"></p>
       <span class="label label-default branch-label" data-toggle="tooltip" data-placement="left" data-container="body"
