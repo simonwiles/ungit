@@ -18,6 +18,7 @@ class HomeRepositoryViewModel {
     this.removeIcon = octicons.x.toSVG({ height: 18 });
     this.arrowIcon = octicons['arrow-right'].toSVG({ height: 24 });
     this.branch = ko.observable('...');
+    this.repoIsDirty = ko.observable(false);
   }
 
   updateState() {
@@ -39,6 +40,10 @@ class HomeRepositoryViewModel {
       .getPromise('/branches', { path: this.path })
       .then((branches) => this.branch(branches.find((b) => b.current).name))
       .catch((err) => this.branch('~error'));
+    this.server.getPromise('/status', { path: this.path }).then((status) => {
+      console.log(status.files);
+      return this.repoIsDirty(Object.keys(status.files).length);
+    });
   }
 
   remove() {
