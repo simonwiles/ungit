@@ -72,7 +72,6 @@ class TextDiffViewModel {
     this.editState = args.editState;
     this.wordWrap = args.wordWrap;
     this.patchLineList = args.patchLineList;
-    this.numberOfSelectedPatchLines = 0;
     this.htmlSrc = undefined;
     this.isParsed = ko.observable(false);
 
@@ -162,7 +161,6 @@ class TextDiffViewModel {
         drawFileList: false,
       });
 
-      this.numberOfSelectedPatchLines = 0;
       let index = 0;
 
       // ko's binding resolution is not recursive, which means below ko.bind refresh method doesn't work for
@@ -212,13 +210,7 @@ class TextDiffViewModel {
   togglePatchLine(index) {
     this.patchLineList()[index] = !this.patchLineList()[index];
 
-    if (this.patchLineList()[index]) {
-      this.numberOfSelectedPatchLines++;
-    } else {
-      this.numberOfSelectedPatchLines--;
-    }
-
-    if (this.numberOfSelectedPatchLines === 0) {
+    if (this.patchLineList().filter(Boolean).length === 0) {
       this.editState('none');
     }
 
